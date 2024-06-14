@@ -1,7 +1,5 @@
 import { useState } from "react";
 import "./NewNotes.css";
-import { nanoid } from "nanoid";
-import { notes } from "../../data/notes";
 import { useNavigate } from "react-router-dom";
 
 const NewNotes = () => {
@@ -12,16 +10,18 @@ const NewNotes = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const note = {
-      id: `notes-${nanoid()}`,
       title,
       body,
-      createdAt: new Date().toISOString(),
-      archived: false,
     };
-    notes.push(note);
-    setTitle("");
-    setBody("");
-    navigate("/");
+
+    fetch("https://notes-api.dicoding.dev/v2/notes", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(note),
+    }).then((res) => {
+      console.log(res);
+      navigate("/");
+    });
   };
 
   return (
