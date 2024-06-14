@@ -1,0 +1,19 @@
+h1,
+form label {
+    color: #EEEEEE;
+}
+
+form {
+    max-width: 600px;
+}
+
+form .btn {
+    color: #00ADB5;
+    border-color: #00ADB5;
+}
+
+form .btn:hover,
+form .btn:active {
+    background-color: #00ADB5 !important;
+    border-color: #00ADB5 !important;
+}
