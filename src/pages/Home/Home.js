@@ -15,8 +15,8 @@ const Home = () => {
     <main className="container mt-lg-5 mb-5 mt-3">
       <h1 className="text-center">All Notes</h1>
       <div className="notes-container row row-gap-3 mt-lg-5 mt-3">
-        {!notes.length && <p className="text-center text-white fs-5 fw-semibold">No Notes...</p>}
-        {notes.length && notes.map((note) => (
+        {notes.length === 0 && <p className="text-center text-white fs-5 fw-semibold">No Notes...</p>}
+        {notes.length > 0&& notes.map((note) => (
           <Note note={note} key={note.id} />
         ))}
       </div>
