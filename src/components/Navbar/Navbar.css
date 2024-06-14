@@ -1,0 +1,14 @@
+header {
+    background: #00ADB5;
+}
+
+.navbar-brand,
+.nav-link {
+    color: #EEE;
+    transition: all .5s ease-in-out;
+}
+
+.navbar-brand:hover,
+.nav-link:hover {
+    color: #393E46;
+}

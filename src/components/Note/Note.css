@@ -1,0 +1,16 @@
+.card {
+    background-color: #EEEEEE;
+}
+.card-title {
+    color: #222831;
+}
+.card-subtitle {
+    color: #393E46;
+}
+.card-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
