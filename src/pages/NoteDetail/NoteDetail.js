@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import moment from "moment";
 import "moment/locale/id";
-import './NoteDetail.css'
+import "./NoteDetail.css";
 
 const NoteDetail = () => {
   const { id } = useParams();
   const [note, setNote] = useState(null);
   const [isPending, setIsPending] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`https://notes-api.dicoding.dev/v2/notes/${id}`)
@@ -17,6 +18,12 @@ const NoteDetail = () => {
         setIsPending(false);
       });
   }, [id]);
+
+  const handleDelete = () => {
+    fetch(`https://notes-api.dicoding.dev/v2/notes/${id}`, {
+      method: "DELETE",
+    }).then(() => navigate("/"));
+  };
 
   return (
     <main className="container mt-lg-5 mb-5 mt-3">
@@ -28,6 +35,12 @@ const NoteDetail = () => {
             {moment(note.createdAt).format("DD MMMM YYYY")}
           </p>
           <p className="fs-5">{note.body}</p>
+          <button
+            className="btn btn-lg btn-outline-danger"
+            onClick={handleDelete}
+          >
+            Delete Note
+          </button>
         </div>
       )}
     </main>
