@@ -1,27 +1,23 @@
 import { useState } from "react";
 import "./NewNotes.css";
 import { useNavigate } from "react-router-dom";
+import apiService from "../../services/api.service";
 
 const NewNotes = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const note = {
       title,
       body,
     };
-
-    fetch("https://notes-api.dicoding.dev/v2/notes", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(note),
-    }).then((res) => {
-      console.log(res);
+    const response = await apiService.createNotes(note);
+    if (response.status === "success") {
       navigate("/");
-    });
+    }
   };
 
   return (
