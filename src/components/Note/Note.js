@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 const Note = ({ note }) => {
   const navigate = useNavigate();
 
+  // Redirect to note detail
   const handleClick = () => {
     navigate(`/notes/${note.id}`);
   } 
@@ -16,7 +17,8 @@ const Note = ({ note }) => {
         <div className="card-body">
           <h5 className="card-title fw-bold">{note.title}</h5>
           <h6 className="card-subtitle mb-2 text-body-secondary">
-            {moment(note.createdAt).format("DD MMMM YYYY")}
+            {/* converts isoDate to the specified format (Example: 28 Dec 2003)  */}
+            {moment(note.createdAt).format("DD MMMM YYYY")} 
           </h6>
           <p className="card-text fw-medium">{note.body}</p>
         </div>

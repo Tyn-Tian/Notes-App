@@ -1,12 +1,19 @@
 .card {
     background-color: #EEEEEE;
 }
+
+.card:hover {
+    cursor: pointer;
+}
+
 .card-title {
     color: #222831;
 }
+
 .card-subtitle {
     color: #393E46;
 }
+
 .card-text {
     display: -webkit-box;
     -webkit-line-clamp: 2;
