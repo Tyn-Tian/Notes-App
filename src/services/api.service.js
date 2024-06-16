@@ -52,13 +52,18 @@ const unarchiveNote = async (id) => {
   return await sendRequest(`${BASE_URL}/${id}/unarchive`, options);
 };
 
+const getArchivedNotes = async () => {
+  return await sendRequest(`${BASE_URL}/archived`);
+}
+
 const apiService = {
   getAllNotes,
   getNote,
   createNotes,
   deleteNote,
   archiveNote,
-  unarchiveNote
+  unarchiveNote,
+  getArchivedNotes
 };
 
 export default apiService;

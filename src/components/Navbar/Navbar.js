@@ -25,6 +25,7 @@ const Navbar = () => {
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <NavItem desc="Home" to="/"/>
               <NavItem desc="New Notes" to="/notes" />
+              <NavItem desc="Archived Notes" to="/notes/archived" />
             </ul>
           </div>
         </div>
