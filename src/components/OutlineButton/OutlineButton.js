@@ -1,3 +1,5 @@
+import './OutlineButton.css';
+
 const OutlineButton = ({ desc, handleClick, className }) => {
   return (
     <button
