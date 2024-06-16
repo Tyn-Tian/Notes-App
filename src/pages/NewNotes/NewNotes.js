@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import apiService from "../../services/api.service";
 import InputText from "./components/InputText";
 import InputTextarea from "./components/InputTextarea";
+import OutlineButton from "../../components/OutlineButton/OutlineButton";
 
 const NewNotes = () => {
   const [title, setTitle] = useState("");
@@ -47,9 +48,7 @@ const NewNotes = () => {
             handleChange={(e) => handleChangeBody(e)}
             placeholder="Input Note Body"
           />
-          <button className="btn btn-lg btn-outline-primary">
-            Create Notes
-          </button>
+          <OutlineButton desc="Create Notes" className="primary" />
         </form>
       </div>
     </main>

@@ -4,6 +4,7 @@ import "moment/locale/id";
 import "./NoteDetail.css";
 import useFetch from "../../hooks/useFetch";
 import apiService from "../../services/api.service";
+import OutlineButton from "../../components/OutlineButton/OutlineButton";
 
 const NoteDetail = () => {
   const { id } = useParams();
@@ -31,12 +32,11 @@ const NoteDetail = () => {
               {moment(data.createdAt).format("DD MMMM YYYY")}
             </p>
             <p className="fs-5">{data.body}</p>
-            <button
-              className="btn btn-lg btn-outline-danger"
-              onClick={handleDelete}
-            >
-              Delete Note
-            </button>
+            <OutlineButton
+              className={"danger"}
+              handleClick={handleDelete}
+              desc="Delete Note"
+            />
           </div>
         )
       )}
