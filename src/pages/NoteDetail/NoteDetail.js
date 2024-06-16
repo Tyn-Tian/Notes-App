@@ -18,6 +18,20 @@ const NoteDetail = () => {
     }
   };
 
+  const handleArchive = async () => {
+    const response = await apiService.archiveNote(id);
+    if (response.status === "success") {
+      navigate("/");
+    }
+  };
+
+  const handleUnarchive = async () => {
+    const response = await apiService.unarchiveNote(id);
+    if (response.status === "success") {
+      navigate("/");
+    }
+  };
+
   return (
     <main className="container mt-lg-5 mb-5 mt-3">
       {isLoading ? (
@@ -32,11 +46,18 @@ const NoteDetail = () => {
               {moment(data.createdAt).format("DD MMMM YYYY")}
             </p>
             <p className="fs-5">{data.body}</p>
-            <OutlineButton
-              className={"danger"}
-              handleClick={handleDelete}
-              desc="Delete Note"
-            />
+            <div className="d-flex gap-3">
+              <OutlineButton
+                className={"warning"}
+                desc={data.archived ? "Unarchive" : "Archive"}
+                handleClick={data.archived ? handleUnarchive : handleArchive}
+              />
+              <OutlineButton
+                className={"danger"}
+                handleClick={handleDelete}
+                desc="Delete Note"
+              />
+            </div>
           </div>
         )
       )}

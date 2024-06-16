@@ -6,7 +6,7 @@ const sendRequest = async (url, options = null) => {
     throw new Error(`HTTP error! status: ${response.status}`);
   }
   const result = await response.json();
-  if (options && options.method !== "DELETE") {
+  if (options && options.method !== "DELETE" && options.method !== "POST") {
     if (!result.data) {
       throw new Error("Data not found in response");
     }
@@ -42,11 +42,23 @@ const deleteNote = async (id) => {
   return await sendRequest(`${BASE_URL}/${id}`, options);
 };
 
+const archiveNote = async (id) => {
+  const options = createRequestOptions("POST");
+  return await sendRequest(`${BASE_URL}/${id}/archive`, options);
+};
+
+const unarchiveNote = async (id) => {
+  const options = createRequestOptions("POST");
+  return await sendRequest(`${BASE_URL}/${id}/unarchive`, options);
+};
+
 const apiService = {
   getAllNotes,
   getNote,
   createNotes,
   deleteNote,
+  archiveNote,
+  unarchiveNote
 };
 
 export default apiService;
