@@ -2,8 +2,8 @@ import { useState } from "react";
 import "./NewNotes.css";
 import { useNavigate } from "react-router-dom";
 import apiService from "../../services/api.service";
-import InputText from "./components/InputText";
-import InputTextarea from "./components/InputTextarea";
+import InputText from "./components/InputText/InputText";
+import InputTextarea from "./components/InputTestarea/InputTextarea";
 import OutlineButton from "../../components/OutlineButton/OutlineButton";
 
 const NewNotes = () => {
