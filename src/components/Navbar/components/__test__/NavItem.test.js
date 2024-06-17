@@ -7,11 +7,21 @@ describe("NavItem Components", () => {
   it("should render a list item", () => {
     render(
       <BrowserRouter>
-        <NavItem />
+        <NavItem to="/" desc="Home" />
       </BrowserRouter>
     );
     const listElement = screen.getByRole("listitem");
     expect(listElement).toBeInTheDocument();
+  });
+
+  it('should render correct description', () => {
+    render(
+      <BrowserRouter>
+        <NavItem to="/" desc="Home" />
+      </BrowserRouter>
+    );
+    const link = screen.getByText(/Home/i);
+    expect(link).toBeInTheDocument();
   });
 
   it("should redirect when list clicked", () => {
