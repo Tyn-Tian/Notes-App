@@ -21,9 +21,13 @@ const Navbar = () => {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <div
+            className="collapse navbar-collapse"
+            id="navbarSupportedContent"
+            data-testid="navbar-collapse"
+          >
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <NavItem desc="Home" to="/"/>
+              <NavItem desc="Home" to="/" />
               <NavItem desc="New Notes" to="/notes" />
               <NavItem desc="Archived Notes" to="/notes/archived" />
             </ul>
