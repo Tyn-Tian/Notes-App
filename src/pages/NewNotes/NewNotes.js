@@ -3,7 +3,7 @@ import "./NewNotes.css";
 import { useNavigate } from "react-router-dom";
 import apiService from "../../services/api.service";
 import InputText from "./components/InputText/InputText";
-import InputTextarea from "./components/InputTestarea/InputTextarea";
+import InputTextarea from "./components/InputTextarea/InputTextarea";
 import OutlineButton from "../../components/OutlineButton/OutlineButton";
 
 const NewNotes = () => {
