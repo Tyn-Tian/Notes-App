@@ -12,7 +12,7 @@ const Note = ({ note }) => {
 
   return (
     <div className="col-12 col-md-6 col-lg-4">
-      <div className="card h-100" onClick={handleClick}>
+      <div className="card h-100" onClick={handleClick} data-testid="note-card">
         <div className="card-body">
           <h5 className="card-title fw-bold">{note.title}</h5>
           <h6 className="card-subtitle mb-2 text-body-secondary">
