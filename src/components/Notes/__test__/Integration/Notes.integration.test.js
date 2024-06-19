@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import Notes from "../Notes";
-import "@testing-library/jest-dom";
+import Notes from "../../Notes";
 import { BrowserRouter } from "react-router-dom";
+import "@testing-library/jest-dom";
 
 const mockData = [
   {
@@ -15,10 +15,10 @@ const mockData = [
     title: "Title Two",
     createdAt: "2024-01-01T00:00:00.000Z",
     body: "Body Two",
-  }
+  },
 ];
 
-describe("Notes Component", () => {
+describe("Notes Component Integration", () => {
   it("should render loading message when isLoading prop is true", () => {
     render(<Notes isLoading={true} error="null" data="null" />);
     const parafElement = screen.getByText(/Loading.../i);
@@ -33,6 +33,16 @@ describe("Notes Component", () => {
     expect(parafElement).toBeInTheDocument();
   });
 
+  it("should render no notes message when data is empty", () => {
+    render(
+      <BrowserRouter>
+        <Notes isLoading={false} error={null} data={[]} />
+      </BrowserRouter>
+    );
+    const parafElement = screen.getByText(/No Notes.../i);
+    expect(parafElement).toBeInTheDocument();
+  });
+
   it("should render Note Component when data prop is not null", () => {
     render(
       <BrowserRouter>
@@ -41,19 +51,6 @@ describe("Notes Component", () => {
     );
     const NoteComponent = screen.getByText(/Title One/i);
     expect(NoteComponent).toBeInTheDocument();
-  });
-
-  it("should redirect when Note Components clicked", () => {
-    render(
-      <BrowserRouter>
-        <Notes isLoading={false} error={null} data={mockData} />
-      </BrowserRouter>
-    );
-    const cardElements = screen.getAllByTestId("note-card");
-    cardElements.map((card, index) => {
-      fireEvent.click(card);
-      return expect(window.location.pathname).toBe(`/notes/${mockData[index].id}`);
-    })
   });
 
   it("should render multiple Note Components when have multiple data notes", () => {
@@ -66,5 +63,18 @@ describe("Notes Component", () => {
     const NoteComponentTwo = screen.getByText(/Title Two/i);
     expect(NoteComponentOne).toBeInTheDocument();
     expect(NoteComponentTwo).toBeInTheDocument();
+  });
+
+  it('should navigates to note detail page when note card clicked', () => {
+    render(
+      <BrowserRouter>
+        <Notes isLoading={false} error={null} data={mockData} />
+      </BrowserRouter>
+    );
+    const cardElements = screen.getAllByTestId("note-card");
+    cardElements.map((card, index) => {
+      fireEvent.click(card);
+      return expect(window.location.pathname).toBe(`/notes/${mockData[index].id}`);
+    })
   });
 });
