@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import Note from "../Note";
 import { BrowserRouter } from "react-router-dom";
+import Note from "../../Note";
 import "@testing-library/jest-dom";
 
 const mockNote = {
@@ -10,7 +10,7 @@ const mockNote = {
   body: "This is a sample note body.",
 };
 
-describe("Note Component", () => {
+describe("Note Component Integration", () => {
   it("should render a note card", () => {
     render(
       <BrowserRouter>
@@ -27,7 +27,7 @@ describe("Note Component", () => {
     expect(bodyElement).toBeInTheDocument();
   });
 
-  it('should redirect to note detail page when note card clicked', () => {
+  it("should navigates to note detail when note card clicked", () => {
     render(
       <BrowserRouter>
         <Note note={mockNote} />
