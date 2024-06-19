@@ -1,9 +1,9 @@
 import { render, screen } from "@testing-library/react";
-import Notes from "../../Notes";
+import Notes from "../../../../components/Notes/Notes";
 import "@testing-library/jest-dom";
 import { BrowserRouter } from "react-router-dom";
 
-jest.mock("../../../Note/Note", () => ({ note }) => (
+jest.mock("../../../../components/Note/Note", () => ({ note }) => (
   <p>{note.title}</p>
 ));
 

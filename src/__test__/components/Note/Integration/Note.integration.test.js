@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
-import Note from "../../Note";
+import Note from "../../../../components/Note/Note";
 import "@testing-library/jest-dom";
 
 const mockNote = {

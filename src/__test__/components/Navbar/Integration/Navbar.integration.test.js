@@ -1,11 +1,7 @@
-import { render, screen } from "@testing-library/react";
-import Navbar from "../../Navbar";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
+import Navbar from "../../../../components/Navbar/Navbar";
 import "@testing-library/jest-dom";
-
-jest.mock("../../components/NavItem", () => ({ desc, to }) => (
-  <a href={to}>{desc}</a>
-));
 
 const checkNavItem = (navItems) => {
   navItems.map((navItem) => {
@@ -16,8 +12,16 @@ const checkNavItem = (navItems) => {
   });
 };
 
-describe("Navbar Component", () => {
-  it("should render a navigation", () => {
+const checkNavItemWhenClicked = (navItems) => {
+  navItems.map((navItem) => {
+    fireEvent.click(screen.getByText(navItem.desc));
+    expect(window.location.pathname).toBe(navItem.to);
+    return true;
+  })
+}
+
+describe("Navbar Component Integration Test", () => {
+  it("should render navigation and NavItem component", () => {
     render(
       <BrowserRouter>
         <Navbar />
@@ -25,14 +29,6 @@ describe("Navbar Component", () => {
     );
     const navElement = screen.getByRole("navigation");
     expect(navElement).toBeInTheDocument();
-  });
-
-  it("should render NavItem with correct description and href", () => {
-    render(
-      <BrowserRouter>
-        <Navbar />
-      </BrowserRouter>
-    );
     checkNavItem([
       {
         desc: /Home/i,
@@ -49,13 +45,25 @@ describe("Navbar Component", () => {
     ]);
   });
 
-  it("should render navbar toggler button", () => {
+  it('should navigates to correct page when NavItem is clicked', () => {
     render(
       <BrowserRouter>
         <Navbar />
       </BrowserRouter>
     );
-    const togglerButton = screen.getByLabelText(/Toggle navigation/i);
-    expect(togglerButton).toBeInTheDocument();
+    checkNavItemWhenClicked([
+      {
+        desc: /Home/i,
+        to: "/",
+      },
+      {
+        desc: /New Notes/i,
+        to: "/notes",
+      },
+      {
+        desc: /Archived Notes/i,
+        to: "/notes/archived",
+      },
+    ]);
   });
 });

@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import OutlineButton from "../OutlineButton";
+import OutlineButton from "../../../components/OutlineButton/OutlineButton";
 import "@testing-library/jest-dom";
 
 const mockedHandleClick = jest.fn();

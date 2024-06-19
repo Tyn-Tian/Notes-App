@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import Notes from "../../Notes";
+import Notes from "../../../../components/Notes/Notes";
 import { BrowserRouter } from "react-router-dom";
 import "@testing-library/jest-dom";
 

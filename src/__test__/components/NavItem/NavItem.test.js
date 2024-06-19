@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import NavItem from "../NavItem";
+import NavItem from "../../../components/NavItem/NavItem";
 import { BrowserRouter } from "react-router-dom";
 import "@testing-library/jest-dom";
 

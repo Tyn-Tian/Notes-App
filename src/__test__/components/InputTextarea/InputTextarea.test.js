@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import InputTextarea from "../InputTextarea";
+import InputTextarea from "../../../components/InputTextarea/InputTextarea";
 import "@testing-library/jest-dom";
 
 const mockedHandleChange = jest.fn();
