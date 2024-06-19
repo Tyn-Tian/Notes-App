@@ -6,11 +6,6 @@ const sendRequest = async (url, options = null) => {
     throw new Error(`HTTP error! status: ${response.status}`);
   }
   const result = await response.json();
-  if (options && options.method !== "DELETE" && options.method !== "POST") {
-    if (!result.data) {
-      throw new Error("Data not found in response");
-    }
-  }
   return result;
 };
 
