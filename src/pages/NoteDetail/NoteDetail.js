@@ -38,28 +38,28 @@ const NoteDetail = () => {
         <h1 className="text-center fw-bold">Loading...</h1>
       ) : error ? (
         <h1 className="text-center fw-bold">{error.message}</h1>
-      ) : (
-        data && (
-          <div className="note-container container">
-            <h1 className="text-center">{data.title}</h1>
-            <p className="mt-3 mt-lg-5 mb-0 opacity-50">
-              {moment(data.createdAt).format("DD MMMM YYYY")}
-            </p>
-            <p className="fs-5">{data.body}</p>
-            <div className="d-flex gap-3">
-              <OutlineButton
-                className={"warning"}
-                desc={data.archived ? "Unarchive" : "Archive"}
-                handleClick={data.archived ? handleUnarchive : handleArchive}
-              />
-              <OutlineButton
-                className={"danger"}
-                handleClick={handleDelete}
-                desc="Delete Note"
-              />
-            </div>
+      ) : data ? (
+        <div className="note-container container">
+          <h1 className="text-center">{data.title}</h1>
+          <p className="mt-3 mt-lg-5 mb-0 opacity-50">
+            {moment(data.createdAt).format("DD MMMM YYYY")}
+          </p>
+          <p className="fs-5">{data.body}</p>
+          <div className="d-flex gap-3">
+            <OutlineButton
+              className={"warning"}
+              desc={data.archived ? "Unarchive" : "Archive"}
+              handleClick={data.archived ? handleUnarchive : handleArchive}
+            />
+            <OutlineButton
+              className={"danger"}
+              handleClick={handleDelete}
+              desc="Delete Note"
+            />
           </div>
-        )
+        </div>
+      ) : (
+        navigate("/")
       )}
     </main>
   );
