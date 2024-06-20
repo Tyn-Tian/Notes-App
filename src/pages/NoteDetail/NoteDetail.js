@@ -1,7 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
-import moment from "moment";
-import "moment/locale/id";
 import "./NoteDetail.css";
+import { formatDate } from "../../utils/utils";
 import useFetch from "../../hooks/useFetch";
 import apiService from "../../services/api.service";
 import OutlineButton from "../../components/OutlineButton/OutlineButton";
@@ -42,7 +41,7 @@ const NoteDetail = () => {
         <div className="note-container container">
           <h1 className="text-center">{data.title}</h1>
           <p className="mt-3 mt-lg-5 mb-0 opacity-50">
-            {moment(data.createdAt).format("DD MMMM YYYY")}
+            {formatDate(data.createdAt)}
           </p>
           <p className="fs-5">{data.body}</p>
           <div className="d-flex gap-3">
