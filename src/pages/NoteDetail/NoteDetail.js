@@ -20,7 +20,7 @@ const NoteDetail = () => {
   const handleArchive = async () => {
     const response = await apiService.archiveNote(id);
     if (response.status === "success") {
-      navigate("/");
+      navigate("/notes/archived");
     }
   };
 
