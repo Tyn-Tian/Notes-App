@@ -15,18 +15,18 @@ const fetchMockReturnValue = (data, isLoading, error) => {
 };
 
 describe("Home Component Integration", () => {
-  it("should render heading element", () => {
+  it("should render All Notes heading element when isArchived is false", () => {
     fetchMockReturnValue(null, true, null);
-    render(<Home />);
+    render(<Home isArchived={false} />);
     const headingElement = screen.getByText(/All Notes/i);
     expect(headingElement).toBeInTheDocument();
   });
 
-  it("should render loading state", () => {
+  it('should render Archived Notes heading element when isArchived is true', () => {
     fetchMockReturnValue(null, true, null);
-    render(<Home />);
-    const parafElement = screen.getByText(/Loading.../i);
-    expect(parafElement).toBeInTheDocument();
+    render(<Home isArchived={true} />);
+    const headingElement = screen.getByText(/Archived Notes/i);
+    expect(headingElement).toBeInTheDocument();
   });
 
   it("should render error state", () => {
