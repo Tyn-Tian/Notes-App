@@ -1,5 +1,5 @@
 import { renderHook, waitFor } from "@testing-library/react";
-import useFetch from "../../../hooks/useFetch";
+import useFetch from "../../hooks/useFetch";
 
 const mockApiService = jest.fn();
 
