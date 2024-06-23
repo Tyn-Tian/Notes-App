@@ -10,8 +10,8 @@ jest.mock("react-router-dom", () => ({
   useParams: jest.fn(),
 }));
 
-jest.mock("../../../../hooks/useFetch");
-jest.mock("../../../../services/api.service");
+jest.mock("../../../hooks/useFetch");
+jest.mock("../../../services/api.service");
 
 const fetchMockReturnValue = (data, isLoading, error) => {
   useFetch.mockReturnValue({
