@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Home from "./pages/Home/Home";
 import NewNotes from "./pages/NewNotes/NewNotes";
 import NoteDetail from "./pages/NoteDetail/NoteDetail";
+import NotFound from "./pages/NotFound/NotFound";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/notes" element={<NewNotes />} />
           <Route path="/notes/:id" element={<NoteDetail />} />
           <Route path="/notes/archived" element={<Home isArchived={true} />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </BrowserRouter>
