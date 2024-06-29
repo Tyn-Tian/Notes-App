@@ -57,7 +57,7 @@ describe("NewNote Component Integration", () => {
     expect(window.location.pathname).toBe("/");
   });
 
-  test('handles API failure', async () => {
+  it('handles API failure', async () => {
     apiService.createNotes.mockResolvedValue({ status: 'error' });
 
     render(
@@ -79,5 +79,29 @@ describe("NewNote Component Integration", () => {
       body: 'Test Body',
     });
     expect(titleInput).toBeInTheDocument();
+  });
+
+  it("should render error message when input is not valid", () => {
+    render(
+      <BrowserRouter>
+        <NewNotes />
+      </BrowserRouter>
+    );
+
+    const titleInput = screen.getByLabelText("Title");
+    const bodyInput = screen.getByLabelText("Note");
+    const submitButton = screen.getByText("Create Notes");
+
+    fireEvent.change(titleInput, { target: { value: "min" } });
+    fireEvent.change(bodyInput, { target: { value: "" } });
+    fireEvent.click(submitButton);
+
+    expect(
+      screen.getByText('"value" length must be at least 5 characters long')
+    ).toBeInTheDocument();
+
+    expect(
+      screen.getByText('"value" is not allowed to be empty')
+    ).toBeInTheDocument();
   });
 });
