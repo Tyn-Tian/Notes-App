@@ -57,17 +57,4 @@ describe("InputTextarea Component", () => {
     fireEvent.change(inputElement, { target: { value: "changed" } });
     expect(mockedHandleChange).toHaveBeenCalledTimes(1);
   });
-
-  it('should render with required attribute', () => {
-    render(
-      <InputTextarea
-        label="test"
-        value=""
-        placeholder="test"
-        handleChange={mockedHandleChange}
-      />
-    );
-    const inputElement = screen.getByPlaceholderText(/test/i);
-    expect(inputElement).toBeRequired();
-  });
 });

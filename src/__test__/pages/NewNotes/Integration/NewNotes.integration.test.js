@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import NewNotes from "../../../../pages/NewNotes/NewNotes";
 import apiService from "../../../../services/api.service";
@@ -47,18 +47,18 @@ describe("NewNote Component Integration", () => {
     const submitButton = screen.getByText("Create Notes");
 
     fireEvent.change(titleInput, { target: { value: "Test Title" } });
-    fireEvent.change(bodyInput, { target: { value: "Test Body" } });
+    fireEvent.change(bodyInput, { target: { value: "Test Bodyzzz" } });
     fireEvent.click(submitButton);
 
     expect(apiService.createNotes).toHaveBeenCalledWith({
       title: "Test Title",
-      body: "Test Body",
+      body: "Test Bodyzzz",
     });
     expect(window.location.pathname).toBe("/");
   });
 
-  it('handles API failure', async () => {
-    apiService.createNotes.mockResolvedValue({ status: 'error' });
+  it("handles API failure", async () => {
+    apiService.createNotes.mockResolvedValue({ status: "error" });
 
     render(
       <BrowserRouter>
@@ -66,18 +66,21 @@ describe("NewNote Component Integration", () => {
       </BrowserRouter>
     );
 
-    const titleInput = screen.getByLabelText('Title');
-    const bodyInput = screen.getByLabelText('Note');
-    const submitButton = screen.getByText('Create Notes');
+    const titleInput = screen.getByLabelText("Title");
+    const bodyInput = screen.getByLabelText("Note");
+    const submitButton = screen.getByText("Create Notes");
 
-    fireEvent.change(titleInput, { target: { value: 'Test Title' } });
-    fireEvent.change(bodyInput, { target: { value: 'Test Body' } });
+    fireEvent.change(titleInput, { target: { value: "Test Title" } });
+    fireEvent.change(bodyInput, { target: { value: "Test Bodyzzz" } });
     fireEvent.click(submitButton);
 
-    expect(apiService.createNotes).toHaveBeenCalledWith({
-      title: 'Test Title',
-      body: 'Test Body',
+    await waitFor(() => {
+      expect(apiService.createNotes).toHaveBeenCalledWith({
+        body: "Test Bodyzzz",
+        title: "Test Title",
+      });
     });
+
     expect(titleInput).toBeInTheDocument();
   });
 

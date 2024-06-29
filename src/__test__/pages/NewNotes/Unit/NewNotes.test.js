@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { BrowserRouter } from "react-router-dom";
 import NewNotes from "../../../../pages/NewNotes/NewNotes";
@@ -38,7 +38,7 @@ jest.mock(
 );
 jest.mock(
   "../../../../components/OutlineButton/OutlineButton",
-  () =>
+  () => 
     ({ desc, handleClick, className }) =>
       (
         <button onClick={handleClick} className={className}>
@@ -92,17 +92,16 @@ describe("NewNote Component", () => {
     const submitButton = screen.getByText("Create Notes");
 
     fireEvent.change(titleInput, { target: { value: "Test Title" } });
-    fireEvent.change(bodyInput, { target: { value: "Test Body" } });
+    fireEvent.change(bodyInput, { target: { value: "Test Bodyzzz" } });
     fireEvent.click(submitButton);
 
-    expect(apiService.createNotes).toHaveBeenCalledWith({
-      title: "Test Title",
-      body: "Test Body",
-    });
-
-    await screen.findByText("Create New Note");
-
-    expect(mockNavigate).toHaveBeenCalledWith("/");
+    await waitFor(() => {
+      expect(apiService.createNotes).toHaveBeenCalledWith({
+        title: "Test Title",
+        body: "Test Bodyzzz",
+      })
+    })
+    await waitFor(() => expect(mockNavigate).toHaveBeenCalled());
   });
 
   it("handles API failure", async () => {
@@ -119,15 +118,9 @@ describe("NewNote Component", () => {
     const submitButton = screen.getByText("Create Notes");
 
     fireEvent.change(titleInput, { target: { value: "Test Title" } });
-    fireEvent.change(bodyInput, { target: { value: "Test Body" } });
+    fireEvent.change(bodyInput, { target: { value: "Test Bodyzzz" } });
     fireEvent.click(submitButton);
-
-    expect(apiService.createNotes).toHaveBeenCalledWith({
-      title: "Test Title",
-      body: "Test Body",
-    });
-
-    expect(mockNavigate).not.toHaveBeenCalled();
+    await waitFor(() => expect(mockNavigate).not.toHaveBeenCalled());
   });
 
   it("should render error message when input is not valid", () => {

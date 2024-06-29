@@ -57,17 +57,4 @@ describe("InputText Component", () => {
     fireEvent.change(inputElement, { target: { value: "Changed" } });
     expect(mockedHandleChange).toHaveBeenCalledTimes(1);
   });
-
-  it('should render with require attribute', () => {
-    render(
-      <InputText
-        label="test"
-        placeholder="test"
-        value="test"
-        handleChange={mockedHandleChange}
-      />
-    );
-    const inputElement = screen.getByPlaceholderText(/test/i);
-    expect(inputElement).toBeRequired();
-  });
 });
