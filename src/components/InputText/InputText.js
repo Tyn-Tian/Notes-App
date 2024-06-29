@@ -9,7 +9,6 @@ const InputText = ({ label, value, handleChange, placeholder }) => {
       </label>
       <input
         type="text"
-        required
         className="form-control"
         id="exampleFormControlInput1"
         placeholder={placeholder}

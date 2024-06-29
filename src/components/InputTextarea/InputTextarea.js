@@ -9,7 +9,6 @@ const InputTextarea = ({ label, value, handleChange, placeholder }) => {
       </label>
       <textarea
         className="form-control"
-        required
         id="exampleFormControlTextarea1"
         rows="3"
         placeholder={placeholder}
