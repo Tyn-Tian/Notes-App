@@ -4,11 +4,13 @@ import { formatDate } from "../../utils/utils";
 import useFetch from "../../hooks/useFetch";
 import apiService from "../../services/api.service";
 import OutlineButton from "../../components/OutlineButton/OutlineButton";
+import { useCallback } from "react";
 
 const NoteDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { data, isLoading, error } = useFetch(() => apiService.getNote(id));
+  const api = useCallback(() => apiService.getNote(id), [id])
+  const { data, isLoading, error } = useFetch(api);
 
   const handleDelete = async () => {
     const response = await apiService.deleteNote(id);
